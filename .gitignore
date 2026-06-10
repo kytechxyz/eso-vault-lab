@@ -1,0 +1,23 @@
+# Vault tokens and credentials — never commit these
+*.token
+.vault-token
+vault-token.txt
+
+# kubeconfig fragments
+kubeconfig
+*.kubeconfig
+
+# Environment files
+.env
+.env.*
+
+# Editor artifacts
+.DS_Store
+.idea/
+*.swp
+*.swo
+
+# Local notes not intended for the repo
+scratch/
+notes/
+TODO.local.md
