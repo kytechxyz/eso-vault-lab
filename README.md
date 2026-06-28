@@ -41,12 +41,12 @@ This lab builds the mental model for operating ESO at scale: what the trust chai
 
 ## Stack
 
-| Component | Version |
-|---|---|
-| Kubernetes (kind) | v1.35.0 |
-| External Secrets Operator | v2.6.0 |
-| HashiCorp Vault | latest (dev mode) |
-| Helm | 3.x |
+| Component                 | Version           |
+| ------------------------- | ----------------- |
+| Kubernetes (kind)         | v1.35.0           |
+| External Secrets Operator | v2.6.0            |
+| HashiCorp Vault           | latest (dev mode) |
+| Helm                      | 3.x               |
 
 ---
 
@@ -95,13 +95,16 @@ kubectl wait --for=condition=ready pod \
 ```
 
 > **Verify CRD API version before continuing.** ESO v2.x dropped `v1beta1`:
+>
 > ```bash
 > kubectl get crd clustersecretstores.external-secrets.io \
 >   -o jsonpath='{.spec.versions[*].name}'
 > # Expected output: v1
 > ```
+>
 > If `v1beta1` appears with `served=false`, all manifests must use `external-secrets.io/v1`.
 > If results look wrong, clear the kubectl discovery cache:
+>
 > ```bash
 > rm -rf ~/.kube/cache/discovery/
 > ```
@@ -130,11 +133,13 @@ bash scripts/verify.sh
 ```
 
 Expected ExternalSecret status:
+
 ```json
-[{"reason": "SecretSynced", "status": "True", "type": "Ready"}]
+[{ "reason": "SecretSynced", "status": "True", "type": "Ready" }]
 ```
 
 Expected decoded Secret values:
+
 ```
 API_KEY: abc123
 DB_PASSWORD: supersecret
@@ -181,6 +186,7 @@ ESO v2.6.0 sets `served=false` for `v1beta1`. Manifests using `apiVersion: exter
 **3. Stale `kubectl` discovery cache**
 
 After CRD installation, `kubectl` can return "resource type not found" even when the CRD is present and ready. The local discovery cache has a 10-minute TTL and doesn't invalidate on CRD creation. Clear it with:
+
 ```bash
 rm -rf ~/.kube/cache/discovery/
 ```
@@ -212,4 +218,4 @@ The reconciled Kubernetes Secret carries `ownerReferences` pointing to the `Exte
 
 ---
 
-*Part of [The Single Thread](https://github.com/kwillia0394/the-single-thread) — a portfolio project bridging traditional infrastructure engineering into cloud-native platform patterns.*
+_Part of [The Single Thread](https://github.com/kytechxyz/the-single-thread) — a portfolio project bridging traditional infrastructure engineering into cloud-native platform patterns._
