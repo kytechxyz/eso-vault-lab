@@ -218,4 +218,4 @@ The reconciled Kubernetes Secret carries `ownerReferences` pointing to the `Exte
 
 ---
 
-_Part of [The Single Thread](https://github.com/kytechxyz) — a portfolio project bridging traditional infrastructure engineering into cloud-native platform patterns._
+_Part of [The Single Thread](https://github.com/kytechxyz/k8s-governance-controller) — a portfolio project bridging traditional infrastructure engineering into cloud-native platform patterns._
